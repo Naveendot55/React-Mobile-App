@@ -3,11 +3,20 @@
     "outputDirectory": "docs",
     "routes": [
         {
-            "handle": "filesystem"
+            "src": "/assets/(.*)",
+            "dest": "/docs/assets/$1"
+        },
+        {
+            "src": "/favicon\\.svg",
+            "dest": "/docs/favicon.svg"
+        },
+        {
+            "src": "/(.*)\\.(js|css|map|png|jpg|jpeg|gif|webp|svg|woff2?|ttf|eot)",
+            "dest": "/docs/$1.$2"
         },
         {
             "src": "/(.*)",
-            "dest": "/index.html"
+            "dest": "/docs/index.html"
         }
     ]
 }

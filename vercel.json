@@ -4,7 +4,10 @@
     "routes": [
         {
             "src": "/assets/(.*)",
-            "dest": "/docs/assets/$1"
+            "dest": "/docs/assets/$1",
+            "headers": {
+                "Content-Type": "application/javascript"
+            }
         },
         {
             "src": "/favicon\\.svg",

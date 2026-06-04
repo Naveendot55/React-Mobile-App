@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# production build
+dist/
+
+# vite cache
+.vite/
+
+# editor
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# env
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Reset ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6c47ff;
+    --primary-light: #8b6aff;
+    --primary-dark: #5533d4;
+    --accent: #f7cb46;
+    --bg: #0f0f1a;
+    --bg-card: rgba(255, 255, 255, 0.06);
+    --bg-card-solid: #1a1a2e;
+    --text: #f0f0f5;
+    --text-muted: #9a9ab0;
+    --border: rgba(255, 255, 255, 0.08);
+    --radius: 14px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ── Animated Background ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(108, 71, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(247, 203, 70, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(108, 71, 255, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    animation: bgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ── Mobile Container ── */
+.mobile-container {
+    width: 390px;
+    min-height: 760px;
+    max-height: 90vh;
+    background: var(--bg-card-solid);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 32px 24px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.5s var(--transition);
+}
+
+.mobile-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mobile-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Typography ── */
+h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.btn:hover::after {
+    opacity: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(108, 71, 255, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(108, 71, 255, 0.5);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    background: rgba(108, 71, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+/* ── Form Elements ── */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.form-group label .required {
+    color: #ff6b6b;
+    margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all var(--transition);
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 71, 255, 0.15);
+    background: rgba(108, 71, 255, 0.04);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Radio Buttons ── */
+.radio-group {
+    display: flex;
+    gap: 24px;
+    margin-top: 6px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.radio-group input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.radio-group input[type="radio"]:checked {
+    border-color: var(--primary);
+}
+
+.radio-group input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+/* ── Link text ── */
+.link {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition);
+}
+
+.link:hover {
+    color: var(--accent);
+}
+
+/* ── Spacer Utilities ── */
+.spacer-sm {
+    height: 12px;
+}
+
+.spacer-md {
+    height: 24px;
+}
+
+.spacer-lg {
+    height: 40px;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+/* ── Profile Page ── */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(108, 71, 255, 0.3);
+    position: relative;
+}
+
+.profile-avatar .camera-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    border: 2px solid var(--bg-card-solid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+}
+
+.profile-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.profile-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.profile-description {
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+/* ── Fade-in animation for page content ── */
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

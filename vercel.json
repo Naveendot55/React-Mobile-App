@@ -3,16 +3,12 @@
     "outputDirectory": "docs",
     "routes": [
         {
-            "src": "/[Rr]eact-[Mm]obile-[Aa]pp/(.*)",
-            "dest": "/docs/$1"
-        },
-        {
-            "src": "/(.*\\.(js|css|map|png|jpg|jpeg|gif|webp|svg|woff2?|ttf|eot|ico))$",
-            "dest": "/docs/$1"
+            "src": "/React-Mobile-App/(.*)",
+            "dest": "/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/docs/index.html"
+            "dest": "/index.html"
         }
     ]
 }

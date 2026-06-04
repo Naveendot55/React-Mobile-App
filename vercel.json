@@ -4,17 +4,14 @@
     "routes": [
         {
             "src": "/assets/(.*)",
-            "dest": "/docs/assets/$1",
-            "headers": {
-                "Content-Type": "application/javascript"
-            }
+            "dest": "/docs/assets/$1"
         },
         {
             "src": "/favicon\\.svg",
             "dest": "/docs/favicon.svg"
         },
         {
-            "src": "/(.*)\\.(js|css|map|png|jpg|jpeg|gif|webp|svg|woff2?|ttf|eot)",
+            "src": "/(.*)\\.(js|css|map|json|png|jpg|jpeg|gif|webp|svg|woff2?|ttf|eot|ico)$",
             "dest": "/docs/$1.$2"
         },
         {
